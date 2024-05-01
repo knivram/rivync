@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import '@/lib/i18next'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import {useFonts} from 'expo-font';

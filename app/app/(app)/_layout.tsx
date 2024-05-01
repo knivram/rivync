@@ -1,6 +1,9 @@
 import React from 'react';
-import {Redirect, Slot, Stack} from "expo-router";
+import {Redirect} from "expo-router";
 import {useAuth} from "@/provider/AuthProvider";
+import {Drawer} from "expo-router/drawer";
+import {GestureHandlerRootView} from "react-native-gesture-handler";
+import {SafeAreaView, Text} from "react-native";
 
 const AppLayout = () => {
     const session = useAuth()
@@ -10,9 +13,11 @@ const AppLayout = () => {
     }
 
     return (
-        <Stack>
-            <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-        </Stack>
+        <GestureHandlerRootView style={{flex: 1}}>
+            <Drawer
+                screenOptions={{headerShown: false}}
+            />
+        </GestureHandlerRootView>
     );
 };
 
