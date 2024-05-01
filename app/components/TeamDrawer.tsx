@@ -27,6 +27,13 @@ const TeamDrawer = () => {
 
     return (
         <SafeAreaView>
+            <View style={styles.currentTeam}>
+                <Image
+                    style={styles.currentTeamPicture}
+                    source={require('@/assets/images/it-logo.jpeg')}
+                />
+                <Text style={{fontWeight: '600', fontSize: 16}}>{selectedTeam?.name}</Text>
+            </View>
             <View style={styles.teamSelect}>
                 {teams.map((team) => (
                     <TouchableOpacity
@@ -39,7 +46,7 @@ const TeamDrawer = () => {
                             source={require('@/assets/images/it-logo.jpeg')}
                         />
                         <View style={styles.textBox}>
-                            <Text>{team.name}</Text>
+                            <Text style={{fontWeight: '600'}}>{team.name}</Text>
                         </View>
                         <View style={styles.iconWrapper}>
                             {team.id === selectedTeam?.id
@@ -57,6 +64,20 @@ const TeamDrawer = () => {
 export default TeamDrawer;
 
 const styles = StyleSheet.create({
+    currentTeam: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 8,
+        paddingVertical: 16,
+    },
+    currentTeamPicture: {
+        width: 128,
+        height: 128,
+        borderRadius: 64,
+        borderColor: 'lightgrey',
+        borderWidth: 0.1,
+    },
     teamSelect: {
         display: 'flex',
         flexDirection: 'column',
@@ -87,4 +108,5 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "center",
     },
+
 });
