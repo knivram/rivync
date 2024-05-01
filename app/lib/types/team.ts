@@ -3,3 +3,7 @@ export type Team = {
     name: string,
     icon: string,
 }
+
+export type TeamWithUserRole = Team & {
+    role: string
+}
