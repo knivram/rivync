@@ -11,6 +11,7 @@ const TeamContext = React.createContext<TeamContext>({team: null, setTeam: () =>
 
 export const TeamProvider = ({children}: { children: React.ReactNode }) => {
     const [team, setTeam] = useState<Team | null>(null)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         supabase.from('team').select('*').limit(1)
@@ -18,8 +19,13 @@ export const TeamProvider = ({children}: { children: React.ReactNode }) => {
                 if (data && data[0]) {
                     setTeam(data[0])
                 }
+                setIsLoading(false)
             })
     }, []);
+
+    if (isLoading) {
+        return null
+    }
 
     return (
         <TeamContext.Provider value={{team, setTeam}}>
