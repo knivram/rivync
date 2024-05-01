@@ -4,6 +4,7 @@ import {useAuth} from "@/provider/AuthProvider";
 import {Drawer} from "expo-router/drawer";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
 import TeamDrawer from "@/components/TeamDrawer";
+import {TeamProvider} from "@/provider/TeamProvider";
 
 const AppLayout = () => {
     const session = useAuth()
@@ -13,12 +14,14 @@ const AppLayout = () => {
     }
 
     return (
-        <GestureHandlerRootView style={{flex: 1}}>
-            <Drawer
-                screenOptions={{headerShown: false}}
-                drawerContent={TeamDrawer}
-            />
-        </GestureHandlerRootView>
+        <TeamProvider>
+            <GestureHandlerRootView style={{flex: 1}}>
+                <Drawer
+                    screenOptions={{headerShown: false}}
+                    drawerContent={TeamDrawer}
+                />
+            </GestureHandlerRootView>
+        </TeamProvider>
     );
 };
 

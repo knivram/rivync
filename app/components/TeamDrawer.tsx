@@ -2,10 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {supabase} from "@/lib/supabase";
 import {Team} from "@/lib/types/team";
-import {MaterialIcons} from "@expo/vector-icons";
+import {Ionicons} from "@expo/vector-icons";
+import {useTeam} from "@/provider/TeamProvider";
+import {DrawerActions} from "@react-navigation/native";
+import {useNavigation} from "expo-router";
 
 const TeamDrawer = () => {
+    const navigation = useNavigation()
     const [teams, setTeams] = useState<Team[]>([])
+    const {team: selectedTeam, setTeam} = useTeam()
 
     useEffect(() => {
         supabase
@@ -15,12 +20,20 @@ const TeamDrawer = () => {
                 setTeams(data as Team[])
             })
     }, []);
+    const handleTeamSelection = (team: Team) => {
+        navigation.dispatch(DrawerActions.closeDrawer());
+        setTeam(team);
+    };
 
     return (
-        <SafeAreaView >
+        <SafeAreaView>
             <View style={styles.teamSelect}>
                 {teams.map((team) => (
-                    <TouchableOpacity key={team.id} style={styles.team}>
+                    <TouchableOpacity
+                        key={team.id}
+                        style={styles.team}
+                        onPress={() => handleTeamSelection(team)}
+                    >
                         <Image
                             style={styles.imageStyle}
                             source={require('@/assets/images/it-logo.jpeg')}
@@ -29,7 +42,10 @@ const TeamDrawer = () => {
                             <Text>{team.name}</Text>
                         </View>
                         <View style={styles.iconWrapper}>
-                            <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
+                            {team.id === selectedTeam?.id
+                                ? <Ionicons name="checkmark" size={24} color="black" />
+                                : null
+                            }
                         </View>
                     </TouchableOpacity>
                 ))}
