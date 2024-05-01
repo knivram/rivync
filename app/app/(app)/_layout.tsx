@@ -3,7 +3,7 @@ import {Redirect} from "expo-router";
 import {useAuth} from "@/provider/AuthProvider";
 import {Drawer} from "expo-router/drawer";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
-import {SafeAreaView, Text} from "react-native";
+import TeamDrawer from "@/components/TeamDrawer";
 
 const AppLayout = () => {
     const session = useAuth()
@@ -16,6 +16,7 @@ const AppLayout = () => {
         <GestureHandlerRootView style={{flex: 1}}>
             <Drawer
                 screenOptions={{headerShown: false}}
+                drawerContent={TeamDrawer}
             />
         </GestureHandlerRootView>
     );
