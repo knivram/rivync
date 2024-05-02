@@ -1,3 +1,4 @@
+import '@/lib/i18next'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import {useFonts} from 'expo-font';
 import {Slot} from 'expo-router';
