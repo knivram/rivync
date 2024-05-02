@@ -1,24 +1,26 @@
 import React from 'react';
 import {Tabs} from "expo-router";
 import {Ionicons} from "@expo/vector-icons";
+import {useTranslation} from "react-i18next";
 
 const page = () => {
+    const {t} = useTranslation()
     return (
         <Tabs >
             <Tabs.Screen name="activity" options={{
-                title: 'Activity',
+                title: t('activity:title'),
                 tabBarIcon: ({size, color}) => <Ionicons name='home-outline' size={size} color={color}/>
             }} />
             <Tabs.Screen name="events" options={{
-                title: 'Events',
+                title: t('event:title'),
                 tabBarIcon: ({size, color}) => <Ionicons name='list' size={size} color={color}/>
             }} />
             <Tabs.Screen name="chat" options={{
-                title: 'Chat',
+                title: t('chat:title'),
                 tabBarIcon: ({size, color}) => <Ionicons name='chatbubble-ellipses-outline' size={size} color={color}/>
             }} />
             <Tabs.Screen name="profile" options={{
-                title: 'Profile',
+                title: t('profile:title'),
                 tabBarIcon: ({size, color}) => <Ionicons name='person-circle-outline' size={size} color={color}/>
             }} />
         </Tabs>
