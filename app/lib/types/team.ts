@@ -1,3 +1,5 @@
+import {UserRole} from "@/lib/types/user";
+
 export type Team = {
     id: string,
     name: string,
@@ -5,5 +7,5 @@ export type Team = {
 }
 
 export type TeamWithUserRole = Team & {
-    role: string
+    role: UserRole
 }

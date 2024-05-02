@@ -1,2 +1,9 @@
 {
+  "user": {
+    "role": {
+      "trainer": "Trainer",
+      "player": "Player",
+      "contactPerson": "Contact person"
+    }
+  }
 }

@@ -7,9 +7,11 @@ import {useTeam} from "@/provider/TeamProvider";
 import {DrawerActions} from "@react-navigation/native";
 import {useNavigation} from "expo-router";
 import {useAuth} from "@/provider/AuthProvider";
+import {useTranslation} from "react-i18next";
 
 const TeamDrawer = () => {
     const navigation = useNavigation()
+    const {t} = useTranslation()
     const [teams, setTeams] = useState<TeamWithUserRole[]>([])
     const {team: selectedTeam, setTeam} = useTeam()
     const session = useAuth()
@@ -53,7 +55,12 @@ const TeamDrawer = () => {
                         />
                         <View style={styles.textBox}>
                             <Text style={{fontWeight: '600', fontSize: 15}}>{team.name}</Text>
-                            <Text style={{color: 'grey', fontSize: 12}}>{team.role}</Text>
+                            <Text style={{color: 'grey', fontSize: 12}}>{
+                                team.role === 'TRAINER' ? t('common:user.role.trainer')
+                                    : team.role === 'PLAYER' ? t('common:user.role.player')
+                                        : team.role === 'CONTACT_PERSON' ? t('common:user.role.contactPerson')
+                                            : team.role
+                            }</Text>
                         </View>
                         <View style={styles.iconWrapper}>
                             {team.id === selectedTeam?.id
