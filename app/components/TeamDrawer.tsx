@@ -19,12 +19,16 @@ const TeamDrawer = () => {
 
     useEffect(() => {
         supabase
-            .rpc('fetch_team_with_role', {
-                profile_uuid: session!.user.id
-            })
+            .from('profile_team')
+            .select('role, team(*)')
+            .eq('profile_id', session!.user.id)
             .then(({data, error}) => {
                 if (data) {
-                    setTeams(data as TeamWithUserRole[])
+                    setTeams(data.map((item) => ({
+                            ...item.team as unknown as Team,
+                            role: item.role,
+                        }))
+                    )
                 }
             })
     }, []);
