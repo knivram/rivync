@@ -1,11 +1,14 @@
 import {BottomTabHeaderProps} from "@react-navigation/bottom-tabs";
-import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
+import {useTeam} from "@/provider/TeamProvider";
+import TeamLogo from "@/components/TeamLogo";
 
 const TeamHeader = ({headerProps, onOpenDrawer}: {
     headerProps: BottomTabHeaderProps,
     onOpenDrawer: () => void
 }) => {
+    const {team} = useTeam()
 
     return (
         <SafeAreaView style={{backgroundColor: 'white'}}>
@@ -13,10 +16,7 @@ const TeamHeader = ({headerProps, onOpenDrawer}: {
                 <TouchableOpacity
                     onPress={onOpenDrawer}
                 >
-                    <Image
-                        style={styles.imageStyle}
-                        source={require('@/assets/images/it-logo.jpeg')}
-                    />
+                   <TeamLogo team={team!}/>
                 </TouchableOpacity>
                 <Text style={styles.titleStyle}>{headerProps.options.title}</Text>
             </View>

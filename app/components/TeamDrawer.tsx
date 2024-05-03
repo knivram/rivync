@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {supabase} from "@/lib/supabase";
 import {Team, TeamWithUserRole} from "@/lib/types/team";
 import {Ionicons} from "@expo/vector-icons";
@@ -8,6 +8,7 @@ import {DrawerActions} from "@react-navigation/native";
 import {useNavigation} from "expo-router";
 import {useAuth} from "@/provider/AuthProvider";
 import {useTranslation} from "react-i18next";
+import TeamLogo from "@/components/TeamLogo";
 
 const TeamDrawer = () => {
     const navigation = useNavigation()
@@ -36,10 +37,7 @@ const TeamDrawer = () => {
     return (
         <SafeAreaView>
             <View style={styles.currentTeam}>
-                <Image
-                    style={styles.currentTeamPicture}
-                    source={require('@/assets/images/it-logo.jpeg')}
-                />
+                <TeamLogo team={selectedTeam!} size={128}/>
                 <Text style={{fontWeight: '600', fontSize: 16}}>{selectedTeam?.name}</Text>
             </View>
             <View style={styles.teamSelect}>
@@ -49,10 +47,7 @@ const TeamDrawer = () => {
                         style={styles.team}
                         onPress={() => handleTeamSelection(team)}
                     >
-                        <Image
-                            style={styles.imageStyle}
-                            source={require('@/assets/images/it-logo.jpeg')}
-                        />
+                        <TeamLogo team={team}/>
                         <View style={styles.textBox}>
                             <Text style={{fontWeight: '600', fontSize: 15}}>{team.name}</Text>
                             <Text style={{color: 'grey', fontSize: 12}}>{
@@ -85,25 +80,11 @@ const styles = StyleSheet.create({
         gap: 8,
         paddingVertical: 16,
     },
-    currentTeamPicture: {
-        width: 128,
-        height: 128,
-        borderRadius: 64,
-        borderColor: 'lightgrey',
-        borderWidth: 0.1,
-    },
     teamSelect: {
         display: 'flex',
         flexDirection: 'column',
         gap: 8,
         padding: 16,
-    },
-    imageStyle: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
-        borderColor: 'lightgrey',
-        borderWidth: 0.1,
     },
     team: {
         display: 'flex',
