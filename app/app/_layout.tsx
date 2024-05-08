@@ -6,6 +6,7 @@ import {Slot} from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
 import {AuthProvider} from "@/provider/AuthProvider";
+import ImageProvider from "@/provider/ImageProvider";
 
 export {
     // Catch any errors thrown by the Layout component.
@@ -37,7 +38,9 @@ export default function RootLayout() {
 
     return (
         <AuthProvider>
-            <Slot />
+            <ImageProvider>
+                <Slot />
+            </ImageProvider>
         </AuthProvider>
     );
 }
