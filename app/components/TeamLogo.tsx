@@ -10,6 +10,7 @@ const TeamLogo = ({team, ...props}: { team: Team, size?: number }) => {
     const [imageUrl, setImageUrl] = useState<string | null>(null)
 
     useEffect(() => {
+        console.log('reloading image')
         imageStore
             .getImageUrl('teams', `${team.id}/${team.icon}`)
             .then((url) => setImageUrl(url))
@@ -17,7 +18,6 @@ const TeamLogo = ({team, ...props}: { team: Team, size?: number }) => {
 
     return (
         <>
-            {imageUrl &&
                 <Image
                     style={{
                         height: size,
@@ -26,9 +26,8 @@ const TeamLogo = ({team, ...props}: { team: Team, size?: number }) => {
                         borderColor: 'lightgrey',
                         borderWidth: 0.1,
                     }}
-                    source={{uri: imageUrl}}
+                    source={{uri: imageUrl ?? undefined}}
                 />
-            }
         </>
     )
 };

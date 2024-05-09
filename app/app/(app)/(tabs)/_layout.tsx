@@ -1,22 +1,34 @@
 import React from 'react';
 import {Tabs, useNavigation} from "expo-router";
 import {Ionicons} from "@expo/vector-icons";
-import TeamHeader from "@/components/TeamHeader";
 import {useTranslation} from "react-i18next";
 import {DrawerActions} from "@react-navigation/native";
+import TeamLogo from "@/components/TeamLogo";
+import {useTeam} from "@/provider/TeamProvider";
+import {TouchableOpacity} from "react-native";
 
 const page = () => {
     const navigation = useNavigation()
     const {t} = useTranslation()
+    const {team} = useTeam()
 
     return (
         <Tabs screenOptions={{
-            header: (props) => (
-                <TeamHeader
-                    headerProps={props}
-                    onOpenDrawer={() => navigation.dispatch(DrawerActions.openDrawer())}
-                />
+            headerLeft: () => (
+                <TouchableOpacity
+                    style={{
+                        paddingLeft: 16,
+                        paddingBottom: 16,
+                    }}
+                    onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+                >
+                    <TeamLogo team={team!}/>
+                </TouchableOpacity>
             ),
+            headerTitleAlign: "left",
+            headerTitleStyle: {
+                marginBottom: 16
+            },
         }}>
             <Tabs.Screen name="activity" options={{
                 title: t('activity:title'),
