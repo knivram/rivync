@@ -34,13 +34,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingBottom: 8,
     },
-    imageStyle: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
-        borderColor: 'lightgrey',
-        borderWidth: 0.1,
-    },
     titleStyle: {
         marginLeft: 16,
         fontSize: 18,
