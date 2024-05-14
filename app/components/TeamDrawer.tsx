@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {supabase} from "@/lib/supabase";
 import {Team, TeamWithUserRole} from "@/lib/types/team";
 import {Ionicons} from "@expo/vector-icons";
@@ -9,6 +9,7 @@ import {useNavigation} from "expo-router";
 import {useAuth} from "@/provider/AuthProvider";
 import {useTranslation} from "react-i18next";
 import TeamLogo from "@/components/TeamLogo";
+import SafeAreaView from "@/components/SafeAreaView";
 
 const TeamDrawer = () => {
     const navigation = useNavigation()

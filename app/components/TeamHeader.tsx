@@ -1,8 +1,9 @@
 import {BottomTabHeaderProps} from "@react-navigation/bottom-tabs";
-import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {useTeam} from "@/provider/TeamProvider";
 import TeamLogo from "@/components/TeamLogo";
+import SafeAreaView from "@/components/SafeAreaView";
 
 const TeamHeader = ({headerProps, onOpenDrawer}: {
     headerProps: BottomTabHeaderProps,
@@ -32,13 +33,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 16,
         paddingBottom: 8,
-    },
-    imageStyle: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
-        borderColor: 'lightgrey',
-        borderWidth: 0.1,
     },
     titleStyle: {
         marginLeft: 16,

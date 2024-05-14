@@ -1,9 +1,9 @@
 import React from 'react';
 import {Tabs, useNavigation} from "expo-router";
 import {Ionicons} from "@expo/vector-icons";
-import TeamHeader from "@/components/TeamHeader";
 import {useTranslation} from "react-i18next";
 import {DrawerActions} from "@react-navigation/native";
+import TeamHeader from "@/components/TeamHeader";
 
 const page = () => {
     const navigation = useNavigation()
@@ -16,7 +16,7 @@ const page = () => {
                     headerProps={props}
                     onOpenDrawer={() => navigation.dispatch(DrawerActions.openDrawer())}
                 />
-            ),
+            )
         }}>
             <Tabs.Screen name="activity" options={{
                 title: t('activity:title'),
