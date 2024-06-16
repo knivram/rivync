@@ -60,6 +60,7 @@ const EventPage = () => {
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item}: { item: Event }) => <EventCard event={item}/>}
                     onEndReached={fetchFutureEvents}
+                    ListHeaderComponent={<View style={{height: 8}}/>}
                     ListFooterComponent={hasMoreFutureEvents ? <ActivityIndicator /> : null}
                 />
             }
