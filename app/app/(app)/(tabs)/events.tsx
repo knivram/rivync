@@ -55,7 +55,7 @@ const EventPage = () => {
     }, []);
 
     return (
-        <View style={{flex: 1, paddingHorizontal: 8}}>
+        <View style={{flex: 1}}>
             {initialLoaded && events.length > 0 ?
                 <FlatList
                     data={events}
@@ -64,8 +64,9 @@ const EventPage = () => {
                     onEndReached={fetchFutureEvents}
                     ListHeaderComponent={<View style={{height: 8}}/>}
                     ListFooterComponent={hasMoreFutureEvents ? <ActivityIndicator /> : null}
+                    style={{paddingHorizontal: 8}}
                 />:
-                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 8}}>
                     <Text style={{fontSize: 20, fontWeight: 'semibold', marginBottom: 8}}>{t('noEvents.title')}</Text>
                     <Text>{t('noEvents.description')}</Text>
                 </View>
