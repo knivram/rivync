@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, FlatList, Text, ActivityIndicator} from "react-native";
 import {useTeam} from "@/provider/TeamProvider";
-import {Event, EventType} from "@/lib/types/event";
+import {PersonEvent, EventType} from "@/lib/types/event";
 import EventCard from "@/components/EventCard";
 import moment from '@/lib/moments';
 import {supabase} from "@/lib/supabase";
@@ -12,7 +12,7 @@ const PAGE_SIZE = 10;
 const EventPage = () => {
     const currentDate = moment().startOf('day');
     const {team} = useTeam();
-    const [events, setEvents] = useState<Event[]>([]);
+    const [events, setEvents] = useState<PersonEvent[]>([]);
     const [futureEventPage, setFutureEventPage] = useState(1);
     const [hasMoreFutureEvents, setHasMoreFutureEvents] = useState(true);
     const [initialLoaded, setInitialLoaded] = useState(false);
@@ -60,7 +60,7 @@ const EventPage = () => {
                 <FlatList
                     data={events}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item}: { item: Event }) => <EventCard event={item}/>}
+                    renderItem={({item}: { item: PersonEvent }) => <EventCard event={item}/>}
                     onEndReached={fetchFutureEvents}
                     ListHeaderComponent={<View style={{height: 8}}/>}
                     ListFooterComponent={hasMoreFutureEvents ? <ActivityIndicator /> : null}

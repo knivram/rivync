@@ -1,6 +1,6 @@
 import moment from "@/lib/moments"
 
-export type Event = {
+export type PersonEvent = {
     id: string
     team_id: string
     type: EventType
@@ -8,6 +8,8 @@ export type Event = {
     end: moment.Moment
     location: string
     ground: string
+    isSelected: boolean
+    participationStatus?: ParticipationStatus
 }
 
 export type EventResponse = {
@@ -18,6 +20,14 @@ export type EventResponse = {
     end: string
     location: string
     ground: string
+    isSelected: boolean
+    participationStatus: string
+}
+
+export enum ParticipationStatus {
+    ACCEPTED = 'ACCEPTED',
+    DECLINED = 'DECLINED',
+    PENDING = 'PENDING',
 }
 
 export enum EventType {
