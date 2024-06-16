@@ -5,6 +5,7 @@ import {Event, EventType} from "@/lib/types/event";
 import EventCard from "@/components/EventCard";
 import moment from '@/lib/moments';
 import {supabase} from "@/lib/supabase";
+import {useTranslation} from "react-i18next";
 
 const PAGE_SIZE = 10;
 
@@ -15,6 +16,7 @@ const EventPage = () => {
     const [futureEventPage, setFutureEventPage] = useState(1);
     const [hasMoreFutureEvents, setHasMoreFutureEvents] = useState(true);
     const [initialLoaded, setInitialLoaded] = useState(false);
+    const {t} = useTranslation('event');
 
     const fetchFutureEvents = async () => {
         if (!hasMoreFutureEvents) {
@@ -54,7 +56,7 @@ const EventPage = () => {
 
     return (
         <View style={{flex: 1, paddingHorizontal: 8}}>
-            {initialLoaded &&
+            {initialLoaded && events.length > 0 ?
                 <FlatList
                     data={events}
                     keyExtractor={(item) => item.id.toString()}
@@ -62,7 +64,11 @@ const EventPage = () => {
                     onEndReached={fetchFutureEvents}
                     ListHeaderComponent={<View style={{height: 8}}/>}
                     ListFooterComponent={hasMoreFutureEvents ? <ActivityIndicator /> : null}
-                />
+                />:
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <Text style={{fontSize: 20, fontWeight: 'semibold', marginBottom: 8}}>{t('noEvents.title')}</Text>
+                    <Text>{t('noEvents.description')}</Text>
+                </View>
             }
         </View>
     );

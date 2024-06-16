@@ -1,3 +1,7 @@
 {
-  "title": "Events"
+  "title": "Events",
+  "noEvents": {
+    "title": "No upcoming events",
+    "description": "There are no upcoming events in this team."
+  }
 }
