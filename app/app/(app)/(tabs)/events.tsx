@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 const PAGE_SIZE = 10;
 
 const EventPage = () => {
-    const currentDate = moment()
+    const currentDate = moment().startOf('day');
     const {team} = useTeam();
     const [events, setEvents] = useState<Event[]>([]);
     const [futureEventPage, setFutureEventPage] = useState(1);
