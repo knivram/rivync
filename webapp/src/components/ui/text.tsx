@@ -6,7 +6,7 @@ const Text = React.forwardRef<
     HTMLParagraphElement,
     React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-    <p ref={ref} className={cn("text-base text-gray-700", className)} {...props} />
+    <p ref={ref} className={cn("text-base", className)} {...props} />
 ));
 
 Text.displayName = 'Text';
