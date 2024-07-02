@@ -68,7 +68,7 @@ export default function HomePage() {
 
             <section id="how-it-works" className="py-20 bg-white">
                 <Container>
-                    <Title className="text-3xl mb-8 text-center">So funktioniert's</Title>
+                    <Title className="text-3xl mb-8 text-center">So funktioniert&apos;s</Title>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <Card>
                             <CardHeader>
